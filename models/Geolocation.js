@@ -7,11 +7,11 @@ const Geolocation = sequelize.define('Geolocation', {
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER,
-        // references: {
-        //   model: "Users",
-        //   key: "id",
-        //   as: "id",
-        // },
+        references: {
+          model: "Users",
+          key: "id",
+          as: "id",
+        },
       },
       socketID: {
         type: Sequelize.STRING,

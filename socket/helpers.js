@@ -4,12 +4,9 @@ const data = async(socketID) =>{
   return socketID
 };
 const updateDbWithNewLocation = async (payload, oldGeoLocationInfo) => {
-  console.log("O DEY BE")
-  // const { id, socketID } = payload;
-  // console.log(payload.id)
+  
   const isOnline = await Geolocation.findByPk(payload.id);
-  // console.log(isOnline);
-  // console.log("DASO");
+  
   if(!isOnline){
     return 
   }

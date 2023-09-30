@@ -3,11 +3,9 @@ const http = require("http");
 const { data } = require("./socket/helpers");
 const { Server } = require("socket.io");
 const DB = require("./DB");
-// const handleJwt = require("./src/middlewares/handleJwt");
 const jwt = require("jsonwebtoken");
 const User = require("./models/User");
 const {AuthRouter, TrackRouter} = require("./src/modules");
-// const { onConnection } = require("./socket");
 const { DriverHandler } = require("./socket/driversocket");
 const { UserHandler } = require("./socket/usersocket");
 
@@ -59,8 +57,6 @@ const onConnection = (socket) => {
   console.log("socket connected", socket.id)
   DriverHandler(io, socket);
   UserHandler(io, socket);
-  // contactHandler(io, socket);
-  // statusHandler(io, socket);
 };
 
 io.on("connection", onConnection);
@@ -83,25 +79,7 @@ console.log(`server running at http://localhost:${Port}`);
     try {
       await DB.sync(); // Create tables if they don't exist
       console.log('Database synced successfully.');
-      // const newUser = await User.create({
-      //   firstName: 'DAVID',
-      //   lastName: 'DAD',
-      //   email: 'TD@example.com',
-      //   // role: 'DD',
-      //   password: "KNXVNC KJZDV"
-      // });
-  
-      // const newGeo = await Geolocation.create({
-      //   id: newUser.id,
-      //   socketID: 'DAVID',
-      //   location: 'DAD',
-      //   // online: true,
-      //   // trackerID: newUser.id,
-      //   // password: "KNXVNC KJZDV" 
-      // });
-  
-      // console.log('New user created:', newUser.toJSON());
-    } catch (error) {
+      } catch (error) {
       console.error('Error syncing database:', error);
     }
   })();
